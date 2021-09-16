@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 
 class Tool {
+  final int id;
   final String title;
   final String toolName;
   final Function funcTool;
   final Icon icon;
 
-  Tool({this.title, this.toolName, this.funcTool, this.icon});
+  Tool( {this.id,this.title, this.toolName, this.funcTool, this.icon});
 
   
 }
 
 List<Tool> livingRoomTools = [
     Tool(
+      id: 1,
       title: 'Air Conditioner',
       toolName: 'Voltas RF140',
       funcTool: () {},
@@ -23,6 +25,7 @@ List<Tool> livingRoomTools = [
       ),
     ),
     Tool(
+      id: 2,
       title: 'Smart TV',
       toolName: 'Samsung EXSS 4K',
       funcTool: () {},
@@ -33,6 +36,7 @@ List<Tool> livingRoomTools = [
       ),
     ),
     Tool(
+      id: 3,
       title: 'Light Bulb',
       toolName: 'Osram 27E',
       funcTool: () {},
@@ -43,6 +47,7 @@ List<Tool> livingRoomTools = [
       ),
     ),
     Tool(
+      id: 4,
       title: 'Washing Machine',
       toolName: 'Bosch 7kg 5475',
       funcTool: () {},
@@ -56,6 +61,7 @@ List<Tool> livingRoomTools = [
 
   List<Tool> kitchenTools = [
     Tool(
+      id: 1,
       title: 'Coffe express',
       toolName: 'Siemens Q6',
       funcTool: () {},
@@ -66,6 +72,7 @@ List<Tool> livingRoomTools = [
       ),
     ),
     Tool(
+      id: 2,
       title: 'Oven',
       toolName: 'Samsung EXS',
       funcTool: () {},
@@ -76,6 +83,7 @@ List<Tool> livingRoomTools = [
       ),
     ),
     Tool(
+      id: 3,
       title: 'Light Bulb',
       toolName: 'Osram 27E',
       funcTool: () {},
@@ -87,3 +95,5 @@ List<Tool> livingRoomTools = [
     ),
     
   ];
+
+  List<List> roomLists = [kitchenTools, livingRoomTools];
