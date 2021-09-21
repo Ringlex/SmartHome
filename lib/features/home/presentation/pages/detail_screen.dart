@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:home_app/features/home/presentation/provider/room_tools.dart';
+import 'package:home_app/features/home/presentation/widgets/air_conditioner.dart';
 
 class DetailScreen extends StatefulWidget {
   final int id;
@@ -21,26 +22,30 @@ class _DetailScreenState extends State<DetailScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     backgroundColor: Color(0xFF0D1117),
-      body: LayoutBuilder(
-        builder: (BuildContext context, BoxConstraints constraints) {
-          return Column(
-            children: [
-              SizedBox(
-                height: 30,
-              ),
-              TopBar(
-                title: widget.toolName,
-              ),
-              RoomTools(
-                id: widget.id,
-                toolName: widget.toolName,
-                toolRoomList: widget.toolList,
-                title: widget.title,
-              )
-            ],
-          );
-        },
+      backgroundColor: Color(0xFF0D1117),
+      body: SingleChildScrollView(
+              child: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+            return Column(
+              children: [
+                SizedBox(
+                  height: 30,
+                ),
+                TopBar(
+                  title: widget.toolName,
+                ),
+                RoomTools(
+                  id: widget.id,
+                  toolName: widget.toolName,
+                  toolRoomList: widget.toolList,
+                  title: widget.title,
+                ),
+                SizedBox(height: 30),
+                PropertiesTools(),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
@@ -66,7 +71,11 @@ class _TopBarState extends State<TopBar> {
       child: Row(
         children: [
           IconButton(
-            icon: Icon(Icons.chevron_left, color: Colors.white, size: 40,),
+            icon: Icon(
+              Icons.chevron_left,
+              color: Colors.white,
+              size: 40,
+            ),
             onPressed: () {
               Navigator.pop(context);
             },
@@ -75,7 +84,7 @@ class _TopBarState extends State<TopBar> {
           Expanded(
             child: Center(
               child: Text(
-                widget.title,
+                'Living room',
                 style: TextStyle(color: Colors.white, fontSize: 26),
               ),
             ),
@@ -133,7 +142,7 @@ class _RoomToolsState extends State<RoomTools> {
     return Padding(
       padding: const EdgeInsets.only(top: 40.0),
       child: Container(
-        height: 300,
+        height: 100,
         width: MediaQuery.of(context).size.width,
         child: ListView.builder(
           padding: EdgeInsets.only(left: 10),
@@ -142,12 +151,12 @@ class _RoomToolsState extends State<RoomTools> {
           itemBuilder: (BuildContext context, int index) {
             if (index == activeTool) {
               return GestureDetector(
-                onTap: (){
+                onTap: () {
                   setState(() {
                     activeTool = index;
                   });
                 },
-                              child: Container(
+                child: Container(
                   height: 50,
                   width: 200,
                   child: Center(
@@ -177,12 +186,12 @@ class _RoomToolsState extends State<RoomTools> {
               ); // create some card/container for tool view
             } else {
               return GestureDetector(
-                onTap: (){
+                onTap: () {
                   setState(() {
                     activeTool = index;
                   });
                 },
-                              child: Container(
+                child: Container(
                   height: 50,
                   width: 200,
                   child: Center(
@@ -215,6 +224,26 @@ class _RoomToolsState extends State<RoomTools> {
           },
         ),
       ),
+    );
+  }
+}
+class PropertiesTools extends StatefulWidget {
+  final int index;
+
+  const PropertiesTools({Key key, this.index}) : super(key: key);
+  @override
+  _PropertiesToolsState createState() => _PropertiesToolsState();
+}
+
+class _PropertiesToolsState extends State<PropertiesTools> {
+  final List<Widget> propertiesList = [
+    AirConditioner(),
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: propertiesList[0],
+      
     );
   }
 }
