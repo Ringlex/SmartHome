@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:home_app/features/home/presentation/provider/room_tools.dart';
 import 'package:home_app/features/home/presentation/widgets/air_conditioner.dart';
+import 'package:home_app/features/home/presentation/widgets/smart_tv.dart';
 
 class DetailScreen extends StatefulWidget {
   final int id;
@@ -41,7 +42,7 @@ class _DetailScreenState extends State<DetailScreen>
                   title: widget.title,
                 ),
                 SizedBox(height: 30),
-                PropertiesTools(),
+                PropertiesTools(index: widget.id-1,),
               ],
             );
           },
@@ -238,11 +239,12 @@ class PropertiesTools extends StatefulWidget {
 class _PropertiesToolsState extends State<PropertiesTools> {
   final List<Widget> propertiesList = [
     AirConditioner(),
+    SmartTv(),
   ];
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: propertiesList[0],
+      child: propertiesList[widget.index],
       
     );
   }

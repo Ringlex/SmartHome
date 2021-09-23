@@ -112,7 +112,7 @@ class _ModesState extends State<Modes> {
               color: Colors.white,
             ),
             () {},
-            'Air mode',
+            'Cooling mode',
           ),
           SizedBox(
             width: 32,
@@ -124,7 +124,7 @@ class _ModesState extends State<Modes> {
               color: Colors.white,
             ),
             () {},
-            'Air mode',
+            'Turbo mode',
           ),
           SizedBox(
             width: 32,
@@ -136,7 +136,7 @@ class _ModesState extends State<Modes> {
               color: Colors.white,
             ),
             () {},
-            'Timer',
+            'Set timer',
           ),
         ],
       ),
