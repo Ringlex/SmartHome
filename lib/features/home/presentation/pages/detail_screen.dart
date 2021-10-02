@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:home_app/features/home/presentation/provider/room_tools.dart';
 import 'package:home_app/features/home/presentation/widgets/air_conditioner.dart';
+import 'package:home_app/features/home/presentation/widgets/light_bulb.dart';
 import 'package:home_app/features/home/presentation/widgets/smart_tv.dart';
+import 'package:home_app/features/home/presentation/widgets/washing_machine.dart';
 
 class DetailScreen extends StatefulWidget {
   final int id;
@@ -25,7 +27,7 @@ class _DetailScreenState extends State<DetailScreen>
     return Scaffold(
       backgroundColor: Color(0xFF0D1117),
       body: SingleChildScrollView(
-              child: LayoutBuilder(
+        child: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
             return Column(
               children: [
@@ -42,7 +44,9 @@ class _DetailScreenState extends State<DetailScreen>
                   title: widget.title,
                 ),
                 SizedBox(height: 30),
-                PropertiesTools(index: widget.id-1,),
+                PropertiesTools(
+                  index: widget.id - 1,
+                ),
               ],
             );
           },
@@ -228,6 +232,7 @@ class _RoomToolsState extends State<RoomTools> {
     );
   }
 }
+
 class PropertiesTools extends StatefulWidget {
   final int index;
 
@@ -240,12 +245,13 @@ class _PropertiesToolsState extends State<PropertiesTools> {
   final List<Widget> propertiesList = [
     AirConditioner(),
     SmartTv(),
+    LightBulb(),
+    WashingMachine(),
   ];
   @override
   Widget build(BuildContext context) {
     return Container(
       child: propertiesList[widget.index],
-      
     );
   }
 }
