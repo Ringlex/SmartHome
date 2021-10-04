@@ -111,13 +111,15 @@ class _HomeScreenState extends State<HomeScreen>
           ],
         ),
       ),
-      body: TabBarView(controller: _tabController, children: <Widget>[
-        LivingRoomView(),
-        KitchenView(),
-        Container(color: Color(0xFF0D1117)),
-        Container(color: Color(0xFF0D1117)),
-        Container(color: Color(0xFF0D1117)),
-      ]),
+      body: TabBarView(
+          controller: _tabController,
+          children: <Widget>[
+            LivingRoomView(),
+            KitchenView(),
+            Container(color: Color(0xFF0D1117)),
+            Container(color: Color(0xFF0D1117)),
+            Container(color: Color(0xFF0D1117)),
+          ]),
     );
   }
 }

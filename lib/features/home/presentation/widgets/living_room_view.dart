@@ -10,8 +10,10 @@ class LivingRoomView extends StatefulWidget {
 
 class _LivingRoomViewState extends State<LivingRoomView> {
   @override
+  @override
   Widget build(BuildContext context) {
     int lengthList = livingRoomTools.length;
+
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         return Padding(
