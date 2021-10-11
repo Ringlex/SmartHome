@@ -11,9 +11,10 @@ class DetailScreen extends StatefulWidget {
   final Icon icon;
   final String title;
   final String toolName;
+  final List<Widget> propertiesList;
 
   const DetailScreen(
-      {Key key, this.id, this.toolList, this.icon, this.title, this.toolName})
+      {Key key, this.id, this.toolList, this.icon, this.title, this.toolName, this.propertiesList})
       : super(key: key);
 
   @override
@@ -46,6 +47,7 @@ class _DetailScreenState extends State<DetailScreen>
                 SizedBox(height: 30),
                 PropertiesTools(
                   index: widget.id - 1,
+                  propertiesList: widget.propertiesList,
                 ),
               ],
             );
@@ -235,23 +237,27 @@ class _RoomToolsState extends State<RoomTools> {
 
 class PropertiesTools extends StatefulWidget {
   final int index;
+  final List<Widget> propertiesList;
 
-  const PropertiesTools({Key key, this.index}) : super(key: key);
+  const PropertiesTools({Key key, this.index, this.propertiesList}) : super(key: key);
   @override
   _PropertiesToolsState createState() => _PropertiesToolsState();
 }
 
 class _PropertiesToolsState extends State<PropertiesTools> {
-  final List<Widget> propertiesList = [
+  final List<Widget> livingPropertiesList = [
     AirConditioner(),
     SmartTv(),
     LightBulb(),
     WashingMachine(),
   ];
+  // final List<Widget> kitchenPropertiesList = [
+    
+  // ];
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: propertiesList[widget.index],
+      child: widget.propertiesList[widget.index],
     );
   }
 }

@@ -42,7 +42,10 @@ class _WashingMachineState extends State<WashingMachine> {
             SizedBox(
               height: 30,
             ),
-            Text('Temperature', style: TextStyle(color: Colors.white, fontSize: 26),),
+            Text(
+              'Temperature',
+              style: TextStyle(color: Colors.white, fontSize: 26),
+            ),
             SizedBox(
               height: 20,
             ),
@@ -50,7 +53,10 @@ class _WashingMachineState extends State<WashingMachine> {
             SizedBox(
               height: 30,
             ),
-            Text('Speed engine', style: TextStyle(color: Colors.white, fontSize: 26),),
+            Text(
+              'Speed engine',
+              style: TextStyle(color: Colors.white, fontSize: 26),
+            ),
             SizedBox(
               height: 20,
             ),
@@ -115,39 +121,45 @@ class WashTemerature extends StatefulWidget {
 }
 
 class _WashTemeratureState extends State<WashTemerature> {
+  int status = 1;
   @override
   Widget build(BuildContext context) {
-    int status = 1;
     return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          tempButton(
-            status,
-            '30',
-             (){
+          GestureDetector(
+            onTap: () {
               setState(() {
                 status = 1;
               });
-            }
+            },
+            child: tempButton(
+              status,
+              '30',
+            ),
           ),
-          tempButton(
-            status,
-            '40',
-             (){
+          GestureDetector(
+            onTap: () {
               setState(() {
                 status = 2;
               });
-            }
+            },
+            child: tempButton(
+              status,
+              '40',
+            ),
           ),
-          tempButton(
-            status,
-            '50',
-             (){
+          GestureDetector(
+            onTap: () {
               setState(() {
                 status = 3;
               });
-            }
+            },
+            child: tempButton(
+              status,
+              '50',
+            ),
           ),
         ],
       ),
@@ -157,32 +169,38 @@ class _WashTemeratureState extends State<WashTemerature> {
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          tempButton(
-            status,
-            '60',
-            (){
+          GestureDetector(
+            onTap: () {
               setState(() {
                 status = 4;
               });
-            }
+            },
+            child: tempButton(
+              status,
+              '60',
+            ),
           ),
-          tempButton(
-            status,
-            '80',
-             (){
+          GestureDetector(
+            onTap: () {
               setState(() {
                 status = 5;
               });
-            }
+            },
+            child: tempButton(
+              status,
+              '80',
+            ),
           ),
-          tempButton(
-            status,
-            '90',
-             (){
+          GestureDetector(
+            onTap: () {
               setState(() {
                 status = 6;
               });
-            }
+            },
+            child: tempButton(
+              status,
+              '90',
+            ),
           ),
         ],
       ),
@@ -193,7 +211,6 @@ class _WashTemeratureState extends State<WashTemerature> {
 Widget tempButton(
   int status,
   String text,
-  Function func,
 ) {
   Map<String, int> temperature = {
     "30": 1,
@@ -203,23 +220,20 @@ Widget tempButton(
     "80": 5,
     "90": 6,
   };
-  return GestureDetector(
-    onTap: func,
-      child: Container(
-        child: Center(
-            child:
-                Text(text, style: TextStyle(color: Colors.white, fontSize: 20))),
-        height: 30,
-        width: 80,
-        decoration: BoxDecoration(
-          color: Color(0xFF161B22),
-          borderRadius: BorderRadius.circular(15),
-          border: Border.all(
-            color: temperature["$text"] == status
-                ? Color(0xFF58A6FF)
-                : Colors.transparent,
-          ),
-        )),
+  return Container(
+    child: Center(
+        child: Text(text, style: TextStyle(color: Colors.white, fontSize: 20))),
+    height: 30,
+    width: 80,
+    decoration: BoxDecoration(
+      color: Color(0xFF161B22),
+      borderRadius: BorderRadius.circular(15),
+      border: Border.all(
+        color: temperature["$text"] == status
+            ? Color(0xFF58A6FF)
+            : Colors.transparent,
+      ),
+    ),
   );
 }
 
@@ -253,24 +267,45 @@ class EngineSpeed extends StatefulWidget {
 }
 
 class _EngineSpeedState extends State<EngineSpeed> {
-  int status = 1;
+  int speedStatus = 1;
   @override
   Widget build(BuildContext context) {
     return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
       Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          speedButton(
-            status,
-            '600',
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                speedStatus = 1;
+              });
+            },
+            child: speedButton(
+              speedStatus,
+              '600',
+            ),
           ),
-          speedButton(
-            status,
-            '700',
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                speedStatus = 2;
+              });
+            },
+            child: speedButton(
+              speedStatus,
+              '700',
+            ),
           ),
-          speedButton(
-            status,
-            '800',
+          GestureDetector(
+            onTap: () {
+              setState(() {
+                speedStatus = 3;
+              });
+            },
+            child: speedButton(
+              speedStatus,
+              '800',
+            ),
           ),
         ],
       )
