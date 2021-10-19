@@ -39,7 +39,9 @@ class _CoffeExpressState extends State<CoffeExpress> {
                 ],
               ),
             ),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             makeDrink(),
           ],
         ),
@@ -54,6 +56,19 @@ Widget typeCoffee() {
   /// Button which select kind of coffee
   return GestureDetector(
       child: Container(
+    padding: EdgeInsets.all(30),
+    child: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(Icons.local_cafe, color: Color(0xFF58A6FF), size: 30),
+          SizedBox(
+            height: 5,
+          ),
+          Text('Coffee', style: TextStyle(fontSize: 20, color: Colors.white)),
+        ],
+      ),
+    ),
     constraints: BoxConstraints(
       maxWidth: 120,
       maxHeight: 120,
@@ -66,6 +81,18 @@ Widget typeCoffee() {
 Widget countGrain() {
   return GestureDetector(
       child: Container(
+    child: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(Icons.grain, color: Color(0xFF58A6FF), size: 30),
+          SizedBox(
+            height: 5,
+          ),
+          Text('+3', style: TextStyle(fontSize: 20, color: Colors.white)),
+        ],
+      ),
+    ),
     constraints: BoxConstraints(
       maxWidth: 120,
       maxHeight: 120,
@@ -78,6 +105,16 @@ Widget countGrain() {
 Widget typeCleaning() {
   return GestureDetector(
       child: Container(
+    child: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text('Cleaning\n mode',
+          textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 20, color: Colors.white)),
+        ],
+      ),
+    ),
     constraints: BoxConstraints(
       maxWidth: 120,
       maxHeight: 120,
@@ -90,6 +127,14 @@ Widget typeCleaning() {
 Widget coffeeMl() {
   return GestureDetector(
       child: Container(
+    child: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text('+100 ml', style: TextStyle(fontSize: 20, color: Colors.white)),
+        ],
+      ),
+    ),
     constraints: BoxConstraints(
       maxWidth: 120,
       maxHeight: 120,
@@ -100,13 +145,16 @@ Widget coffeeMl() {
 }
 
 Widget makeDrink() {
-   return GestureDetector(
+  return GestureDetector(
       child: Container(
+    padding: EdgeInsets.only(top: 10, bottom: 10, left: 50, right: 50),
+    child: Text('Make drink!',
+        style: TextStyle(color: Colors.white, fontSize: 26)),
     constraints: BoxConstraints(
       maxWidth: 270,
       maxHeight: 60,
     ),
     decoration: BoxDecoration(
-        color: Color(0xFF21262D), borderRadius: BorderRadius.circular(15)),
+        color: Colors.green, borderRadius: BorderRadius.circular(15)),
   ));
 }
