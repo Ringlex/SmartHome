@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_app/features/home/presentation/widgets/bedroom_view.dart';
 import 'package:home_app/features/home/presentation/widgets/kitchen_view.dart';
 import 'package:home_app/features/home/presentation/widgets/living_room_view.dart';
 
@@ -116,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen>
           children: <Widget>[
             LivingRoomView(),
             KitchenView(),
-            Container(color: Color(0xFF0D1117)),
+            BedroomView(),
             Container(color: Color(0xFF0D1117)),
             Container(color: Color(0xFF0D1117)),
           ]),

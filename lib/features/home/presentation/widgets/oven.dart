@@ -45,7 +45,7 @@ class _OvenState extends State<Oven> {
         SizedBox(
           height: 30,
         ),
-      Text('Temperature', style: TextStyle(color: Colors.white, fontSize: 30)),
+      Text('Temperature', style: TextStyle(color: Colors.white, fontSize: 26)),
         Padding(
           padding: const EdgeInsets.only(top: 15.0),
           child: Slider(
@@ -75,8 +75,8 @@ Widget functionButton(Icon icon, Function func) {
       child: Center(
         child: icon,
       ),
-      height: 120,
-      width: 120,
+      height: 110,
+      width: 110,
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: Color(0xFF21262D),

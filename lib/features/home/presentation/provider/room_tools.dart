@@ -96,4 +96,40 @@ List<Tool> livingRoomTools = [
     
   ];
 
+  List<Tool> bedroomTool = [
+    Tool(
+      id: 1,
+      title: 'Light Bulb',
+      toolName: 'Osram 27E',
+      funcTool: () {},
+      icon: Icon(
+        Icons.lightbulb_outline_sharp,
+        color: Color(0xFF58A6FF),
+        size: 30,
+      ),
+    ),
+    Tool(
+      id: 2,
+      title: 'Night lamp',
+      toolName: 'Osram 27E',
+      funcTool: () {},
+      icon: Icon(
+        Icons.lightbulb,
+        color: Color(0xFF58A6FF),
+        size: 30,
+      ),
+    ),
+    Tool(
+      id: 3,
+      title: 'Smart TV',
+      toolName: 'Samsung EXSS 4K',
+      funcTool: () {},
+      icon: Icon(
+        Icons.tv,
+        color: Color(0xFF58A6FF),
+        size: 30,
+      ),
+    ),
+  ];
+
   List<List> roomLists = [kitchenTools, livingRoomTools];
