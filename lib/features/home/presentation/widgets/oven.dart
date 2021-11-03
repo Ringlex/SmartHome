@@ -68,6 +68,8 @@ class _OvenState extends State<Oven> {
   }
 }
 
+/// Widget [functionButton] allow add a icon of button 
+/// and function. Applies to only [Oven].
 Widget functionButton(Icon icon, Function func) {
   return GestureDetector(
     onTap: func,

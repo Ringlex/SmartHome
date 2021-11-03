@@ -125,6 +125,8 @@ class _HomeScreenState extends State<HomeScreen>
   }
 }
 
+///Widget display main information for home.
+///It's a temperature.
 class InfoBar extends StatelessWidget {
   final height;
   final width;
