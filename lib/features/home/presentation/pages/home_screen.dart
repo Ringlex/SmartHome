@@ -1,5 +1,9 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:home_app/features/home/presentation/pages/add_tool_screen.dart';
+import 'package:home_app/features/home/presentation/widgets/bathroom_view.dart';
 import 'package:home_app/features/home/presentation/widgets/bedroom_view.dart';
+import 'package:home_app/features/home/presentation/widgets/garage_view.dart';
 import 'package:home_app/features/home/presentation/widgets/kitchen_view.dart';
 import 'package:home_app/features/home/presentation/widgets/living_room_view.dart';
 
@@ -68,7 +72,16 @@ class _HomeScreenState extends State<HomeScreen>
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xFF238636),
         child: Icon(Icons.add),
-        onPressed: () {},
+        onPressed: () {
+          //TODO remove below code - only example to connect with data base
+          final database = FirebaseDatabase.instance.reference();
+
+          database.child('rooms').child('kitchen').update({'lightOn': 0});
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => AddToolSreen()),
+          );
+        },
       ),
       bottomNavigationBar: BottomAppBar(
         color: Color(0xFF21262D),
@@ -112,15 +125,13 @@ class _HomeScreenState extends State<HomeScreen>
           ],
         ),
       ),
-      body: TabBarView(
-          controller: _tabController,
-          children: <Widget>[
-            LivingRoomView(),
-            KitchenView(),
-            BedroomView(),
-            Container(color: Color(0xFF0D1117)),
-            Container(color: Color(0xFF0D1117)),
-          ]),
+      body: TabBarView(controller: _tabController, children: <Widget>[
+        LivingRoomView(),
+        KitchenView(),
+        BedroomView(),
+        BathroomView(),
+        GarageView(),
+      ]),
     );
   }
 }
