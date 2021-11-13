@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:home_app/features/home/presentation/pages/home_screen.dart';
+import 'package:home_app/features/home/presentation/provider/tab_manager.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,14 +11,20 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-      
-        primarySwatch: Colors.blue,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider (create: (context) => TabManager()),
+      ],
+          child: MaterialApp(
+        
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(
+        
+          primarySwatch: Colors.blue,
+        ),
+        home: MyHomePage(title: 'Smart home'),
       ),
-      home: MyHomePage(title: 'Smart home'),
     );
   }
 }
