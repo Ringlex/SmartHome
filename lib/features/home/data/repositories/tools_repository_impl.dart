@@ -6,7 +6,7 @@ import 'package:home_app/features/home/domain/repositories/tool_repository.dart'
 class ToolsRepositoryImpl implements ToolRepositories {
   final ToolsRemoteDataSource remoteTools;
 
-  ToolsRepositoryImpl(this.remoteTools);
+  ToolsRepositoryImpl(this.remoteTools,);
 
   
 
