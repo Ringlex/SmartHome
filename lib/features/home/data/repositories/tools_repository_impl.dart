@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 import 'package:home_app/features/home/data/datasources/tools_remote_data_source.dart';
 import 'package:home_app/features/home/domain/entities/tool.dart';
 import 'package:home_app/features/home/domain/repositories/tool_repository.dart';
@@ -11,14 +10,14 @@ class ToolsRepositoryImpl implements ToolRepositories {
   
 
   @override
-  Future<Tool> getTool(String path) async{
-      // TODO: implement getTool
+  Future<List<Tool>> getTool(String path) async{
+      return remoteTools.getConcreteTool(path);
       
     }
   
     @override
     Future<Tool> updateValue(String path, String value) async{
-    // TODO: implement updateValue
+      return remoteTools.updateTool(path, value);
     
   }
   

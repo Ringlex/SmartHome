@@ -6,7 +6,7 @@ class GetTools {
 
   GetTools(this.repository);
 
-  Future<Tool> callGet(String path) async {
+  Future<List<Tool>> callGet(String path) async {
     return await repository.getTool(path);
   }
 
