@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-class Tool {
+class Tools {
   final int id;
   final String title;
   final String toolName;
   final Function funcTool;
   final Icon icon;
 
-  Tool({this.id, this.title, this.toolName, this.funcTool, this.icon});
+  Tools({this.id, this.title, this.toolName, this.funcTool, this.icon});
 }
 
-List<Tool> livingRoomTools = [
-  Tool(
+List<Tools> livingRoomTools = [
+  Tools(
     id: 1,
     title: 'Air Conditioner',
     toolName: 'Voltas RF140',
@@ -22,7 +22,7 @@ List<Tool> livingRoomTools = [
       size: 30,
     ),
   ),
-  Tool(
+  Tools(
     id: 2,
     title: 'Smart TV',
     toolName: 'Samsung EXSS 4K',
@@ -33,7 +33,7 @@ List<Tool> livingRoomTools = [
       size: 30,
     ),
   ),
-  Tool(
+  Tools(
     id: 3,
     title: 'Light Bulb',
     toolName: 'Osram 27E',
@@ -44,7 +44,7 @@ List<Tool> livingRoomTools = [
       size: 30,
     ),
   ),
-  Tool(
+  Tools(
     id: 4,
     title: 'Washing Machine',
     toolName: 'Bosch 7kg 5475',
@@ -57,8 +57,8 @@ List<Tool> livingRoomTools = [
   ),
 ];
 
-List<Tool> kitchenTools = [
-  Tool(
+List<Tools> kitchenTools = [
+  Tools(
     id: 1,
     title: 'Coffe express',
     toolName: 'Siemens Q6',
@@ -69,7 +69,7 @@ List<Tool> kitchenTools = [
       size: 30,
     ),
   ),
-  Tool(
+  Tools(
     id: 2,
     title: 'Oven',
     toolName: 'Samsung EXS',
@@ -80,7 +80,7 @@ List<Tool> kitchenTools = [
       size: 30,
     ),
   ),
-  Tool(
+  Tools(
     id: 3,
     title: 'Light Bulb',
     toolName: 'Osram 27E',
@@ -93,8 +93,8 @@ List<Tool> kitchenTools = [
   ),
 ];
 
-List<Tool> bedroomTool = [
-  Tool(
+List<Tools> bedroomTool = [
+  Tools(
     id: 1,
     title: 'Light Bulb',
     toolName: 'Osram 27E',
@@ -105,7 +105,7 @@ List<Tool> bedroomTool = [
       size: 30,
     ),
   ),
-  Tool(
+  Tools(
     id: 2,
     title: 'Night lamp',
     toolName: 'Osram 27E',
@@ -116,7 +116,7 @@ List<Tool> bedroomTool = [
       size: 30,
     ),
   ),
-  Tool(
+  Tools(
     id: 3,
     title: 'Smart TV',
     toolName: 'Samsung EXSS 4K',
@@ -129,8 +129,8 @@ List<Tool> bedroomTool = [
   ),
 ];
 
-List<Tool> bathroomTool = [
-  Tool(
+List<Tools> bathroomTool = [
+  Tools(
     id: 1,
     title: 'Light Bulb',
     toolName: 'Osram 27E',

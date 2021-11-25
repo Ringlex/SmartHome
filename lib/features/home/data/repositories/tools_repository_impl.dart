@@ -10,14 +10,14 @@ class ToolsRepositoryImpl implements ToolRepositories {
   
 
   @override
-  Future<List<Tool>> getTool(String path) async{
-      return remoteTools.getConcreteTool(path);
+  Future<List<Tool>> getTool(String path, String pathTool) async{
+      return remoteTools.getConcreteTool(path, pathTool);
       
     }
   
     @override
-    Future<Tool> updateValue(String path, String value) async{
-      return remoteTools.updateTool(path, value);
+    Future<void> updateValue(String path, String value, String key, String pathTool, String variable) async{
+      return remoteTools.updateTool(path, value, key, pathTool, variable);
     
   }
   

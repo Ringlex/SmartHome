@@ -6,11 +6,11 @@ class GetTools {
 
   GetTools(this.repository);
 
-  Future<List<Tool>> callGet(String path) async {
-    return await repository.getTool(path);
+  Future<List<Tool>> callGet(String path, String pathTool) async {
+    return await repository.getTool(path, pathTool);
   }
 
-  Future<Tool> callUpdate(String path, String value) async {
-    return await repository.updateValue(path, value);
+  Future<void> callUpdate(String path, String value, String key, String pathTool, String variable) async {
+    return await repository.updateValue(path, value, key, pathTool, variable);
   }
 }

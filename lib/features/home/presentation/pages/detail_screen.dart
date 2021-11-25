@@ -7,7 +7,7 @@ import 'package:home_app/features/home/presentation/widgets/washing_machine.dart
 
 class DetailScreen extends StatefulWidget {
   final int id;
-  final List<Tool> toolList;
+  final List<Tools> toolList;
   final Icon icon;
   final String title;
   final String toolName;
@@ -118,7 +118,7 @@ class RoomTools extends StatefulWidget {
   ///
   /// After assign a tool it should show a properties of this tool.
 
-  final List<Tool> toolRoomList;
+  final List<Tools> toolRoomList;
   final int id;
   final Icon icon;
   final String title;
