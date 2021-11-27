@@ -4,6 +4,7 @@ import 'package:home_app/features/home/data/repositories/tools_repository_impl.d
 import 'package:home_app/features/home/domain/repositories/tool_repository.dart';
 import 'package:home_app/features/home/domain/usecases/get_tools.dart';
 import 'package:home_app/features/home/presentation/provider/tools_manager.dart';
+import 'package:http/http.dart' as http;
 
 import 'features/home/presentation/provider/tab_manager.dart';
 
@@ -19,7 +20,9 @@ void init() {
     () => ToolsRepositoryImpl(sl()),
   );
   sl.registerLazySingleton<ToolsRemoteDataSource>(
-      () => ToolsRemoteDataSourceImpl());
+      () => ToolsRemoteDataSourceImpl(sl()));
   //Domain Layer
   sl.registerFactory(() => GetTools(sl()));
+
+   sl.registerLazySingleton(() => http.Client());
 }

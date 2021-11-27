@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:home_app/features/home/domain/entities/tool.dart';
-import 'package:home_app/features/home/domain/repositories/tool_repository.dart';
 import 'package:home_app/features/home/domain/usecases/get_tools.dart';
-import 'package:home_app/features/home/presentation/provider/room_tools.dart';
 
 class ToolsManager extends ChangeNotifier {
   GetTools _getTools;
@@ -14,17 +12,25 @@ class ToolsManager extends ChangeNotifier {
   List<Tool> bedroomTools = [];
   List<Tool> garageTools = [];
 
-  Future fetchToolsToLists() async {
-    
-    var result = await _getTools.callGet('livingRoom', 'LivingRoomTools');
-    livingRoomTools = result;
+  Future<List<Tool>> getList(String path, String pathTool) async {
+    List<Tool> _tools = [];
+    _tools = await _getTools.callGet(path, pathTool);
+    return _tools;
+    //notifyListeners();
+  }
 
-    result = await _getTools.callGet('kitchen', 'kitchenTools');
-    kitchenTools = result;
+  Future<void> fetchToolsToLists() async {
 
-    result = await _getTools.callGet('bedroom', 'bedroomTools');
-    bedroomTools = result;
+    livingRoomTools = await getList('livingRoom', 'livingRoomTools');
+    kitchenTools = await getList('kitchen', 'kitchenTools');
+    bathroomTools = await getList('bathroom', 'bathroomTools');
+    bedroomTools = await getList('bedroom', 'bedroomTools');
+    garageTools = await getList('garage', 'garageTools');
 
-    
+    print(livingRoomTools);
+    print(garageTools);
+    print(bathroomTools);
+    print(kitchenTools);
+    notifyListeners();
   }
 }

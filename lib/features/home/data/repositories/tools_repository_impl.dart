@@ -3,21 +3,21 @@ import 'package:home_app/features/home/domain/entities/tool.dart';
 import 'package:home_app/features/home/domain/repositories/tool_repository.dart';
 
 class ToolsRepositoryImpl implements ToolRepositories {
-  final ToolsRemoteDataSource remoteTools;
+  final ToolsRemoteDataSource toolsRemoteDataSource;
 
-  ToolsRepositoryImpl(this.remoteTools,);
+  ToolsRepositoryImpl(this.toolsRemoteDataSource,);
 
   
 
   @override
   Future<List<Tool>> getTool(String path, String pathTool) async{
-      return remoteTools.getConcreteTool(path, pathTool);
+      return await toolsRemoteDataSource.getConcreteTool(path, pathTool);
       
     }
   
     @override
     Future<void> updateValue(String path, String value, String key, String pathTool, String variable) async{
-      return remoteTools.updateTool(path, value, key, pathTool, variable);
+      return toolsRemoteDataSource.updateTool(path, value, key, pathTool, variable);
     
   }
   

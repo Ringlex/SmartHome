@@ -1,11 +1,13 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:home_app/features/home/presentation/pages/add_tool_screen.dart';
+import 'package:home_app/features/home/presentation/provider/tools_manager.dart';
 import 'package:home_app/features/home/presentation/widgets/bathroom_view.dart';
 import 'package:home_app/features/home/presentation/widgets/bedroom_view.dart';
 import 'package:home_app/features/home/presentation/widgets/garage_view.dart';
 import 'package:home_app/features/home/presentation/widgets/kitchen_view.dart';
 import 'package:home_app/features/home/presentation/widgets/living_room_view.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -17,7 +19,12 @@ class _HomeScreenState extends State<HomeScreen>
   TabController _tabController;
   @override
   void initState() {
+     Provider.of<ToolsManager>(context, listen: false).fetchToolsToLists();
     super.initState();
+    //Future.delayed(const Duration(milliseconds: 100), () {
+
+    // });
+
     _tabController = TabController(
       length: 5,
       vsync: this,
@@ -32,6 +39,9 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
+  
+   final lista = context.select((ToolsManager n) => n.livingRoomTools);
+   print(lista);
     return Scaffold(
       backgroundColor: Color(0xFF0D1117),
       appBar: AppBar(
