@@ -23,12 +23,12 @@ class ToolsManager extends ChangeNotifier {
     livingRoomTools = await getList('livingRoom', 'livingRoomTools');
     kitchenTools = await getList('kitchen', 'kitchenTools');
     bathroomTools = await getList('bathroom', 'bathroomTools');
-    //bedroomTools = await getList('bedroom', 'bedroomTools');
+    bedroomTools = await getList('bedroom', 'bedroomTools');
     garageTools = await getList('garage', 'garageTools');
 
     print(livingRoomTools);
     print(garageTools);
-    //print(bedroomTools);
+    print(bedroomTools);
     print(kitchenTools);
     notifyListeners();
   }

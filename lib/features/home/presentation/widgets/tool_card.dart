@@ -5,7 +5,7 @@ class ToolCard extends StatefulWidget {
   final String title;
   final String toolName;
   final Function funcTool;
-  final Icon icon;
+  final int icon;
 
   const ToolCard({Key key, this.title, this.toolName, this.funcTool, this.icon})
       : super(key: key);
@@ -31,7 +31,12 @@ class _ToolCardState extends State<ToolCard> {
               SizedBox(
                 height: 15,
               ),
-              widget.icon,
+              Icon(
+                            IconData(widget.icon,
+                                fontFamily: 'MaterialIcons'),
+                            color: Color(0xFF58A6FF),
+                            size: 30,
+                          ),
               SizedBox(
                 height: 10,
               ),

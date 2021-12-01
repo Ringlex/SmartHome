@@ -5,7 +5,7 @@ class ToolsModel extends Tool {
     final int id,
     final String title,
     final String toolName,
-    final String icon,
+    final int icon,
     final int volume,
     final int channel,
     final int brightness,

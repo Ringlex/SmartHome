@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:home_app/features/home/domain/entities/tool.dart';
 import 'package:home_app/features/home/presentation/provider/room_tools.dart';
 import 'package:home_app/features/home/presentation/widgets/air_conditioner.dart';
 import 'package:home_app/features/home/presentation/widgets/light_bulb.dart';
@@ -7,14 +8,20 @@ import 'package:home_app/features/home/presentation/widgets/washing_machine.dart
 
 class DetailScreen extends StatefulWidget {
   final int id;
-  final List<Tools> toolList;
-  final Icon icon;
+  final List<Tool> toolList;
+  final int icon;
   final String title;
   final String toolName;
   final List<Widget> propertiesList;
 
   const DetailScreen(
-      {Key key, this.id, this.toolList, this.icon, this.title, this.toolName, this.propertiesList})
+      {Key key,
+      this.id,
+      this.toolList,
+      this.icon,
+      this.title,
+      this.toolName,
+      this.propertiesList})
       : super(key: key);
 
   @override
@@ -118,7 +125,7 @@ class RoomTools extends StatefulWidget {
   ///
   /// After assign a tool it should show a properties of this tool.
 
-  final List<Tools> toolRoomList;
+  final List<Tool> toolRoomList;
   final int id;
   final Icon icon;
   final String title;
@@ -172,7 +179,12 @@ class _RoomToolsState extends State<RoomTools> {
                       children: [
                         Center(
                             child: SizedBox(
-                          child: widget.toolRoomList[index].icon,
+                          child: Icon(
+                            IconData(widget.toolRoomList[index].icon,
+                                fontFamily: 'MaterialIcons'),
+                            color: Color(0xFF58A6FF),
+                            size: 30,
+                          ),
                           height: 40,
                           width: 40,
                         )),
@@ -207,7 +219,12 @@ class _RoomToolsState extends State<RoomTools> {
                       children: [
                         Center(
                             child: SizedBox(
-                          child: widget.toolRoomList[index].icon,
+                          child: Icon(
+                            IconData(widget.toolRoomList[index].icon,
+                                fontFamily: 'MaterialIcons'),
+                            color: Color(0xFF58A6FF),
+                            size: 30,
+                          ),
                           height: 40,
                           width: 40,
                         )),
@@ -239,7 +256,8 @@ class PropertiesTools extends StatefulWidget {
   final int index;
   final List<Widget> propertiesList;
 
-  const PropertiesTools({Key key, this.index, this.propertiesList}) : super(key: key);
+  const PropertiesTools({Key key, this.index, this.propertiesList})
+      : super(key: key);
   @override
   _PropertiesToolsState createState() => _PropertiesToolsState();
 }
@@ -252,7 +270,7 @@ class _PropertiesToolsState extends State<PropertiesTools> {
     WashingMachine(),
   ];
   // final List<Widget> kitchenPropertiesList = [
-    
+
   // ];
   @override
   Widget build(BuildContext context) {

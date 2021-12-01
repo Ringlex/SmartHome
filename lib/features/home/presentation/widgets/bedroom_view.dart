@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:home_app/features/home/domain/entities/tool.dart';
 import 'package:home_app/features/home/presentation/pages/detail_screen.dart';
 import 'package:home_app/features/home/presentation/provider/room_tools.dart';
+import 'package:home_app/features/home/presentation/provider/tools_manager.dart';
 import 'package:home_app/features/home/presentation/widgets/light_bulb.dart';
 import 'package:home_app/features/home/presentation/widgets/smart_tv.dart';
 import 'package:home_app/features/home/presentation/widgets/tool_card.dart';
+import 'package:provider/provider.dart';
 
 class BedroomView extends StatefulWidget {
   @override
@@ -11,7 +14,6 @@ class BedroomView extends StatefulWidget {
 }
 
 class _BedroomViewState extends State<BedroomView> {
-  int _lengthList = bedroomTool.length;
   final List<Widget> bedroomPropertiesList = [
     LightBulb(),
     LightBulb(),
@@ -19,13 +21,15 @@ class _BedroomViewState extends State<BedroomView> {
   ];
   @override
   Widget build(BuildContext context) {
+    List<Tool> _bedroomToolsList =
+        Provider.of<ToolsManager>(context, listen: false).bedroomTools;
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         return Padding(
           padding: const EdgeInsets.only(top: 20.0),
           child: GridView.count(
             crossAxisCount: 2,
-            children: List.generate(_lengthList, (index) {
+            children: List.generate(_bedroomToolsList.length, (index) {
               return GestureDetector(
                 onTap: () {
                   Navigator.push(
@@ -33,17 +37,17 @@ class _BedroomViewState extends State<BedroomView> {
                       MaterialPageRoute(
                           builder: (context) => DetailScreen(
                                 id: index + 1,
-                                toolList: bedroomTool,
-                                icon: bedroomTool[index].icon,
-                                title: bedroomTool[index].title,
-                                toolName: bedroomTool[index].title,
+                                toolList: _bedroomToolsList,
+                                icon: _bedroomToolsList[index].icon,
+                                title: _bedroomToolsList[index].title,
+                                toolName: _bedroomToolsList[index].title,
                                 propertiesList: bedroomPropertiesList,
                               )));
                 },
                 child: ToolCard(
-                  title: bedroomTool[index].title,
-                  toolName: bedroomTool[index].toolName,
-                  icon: bedroomTool[index].icon,
+                  title: _bedroomToolsList[index].title,
+                  toolName: _bedroomToolsList[index].toolName,
+                  icon: _bedroomToolsList[index].icon,
                 ),
               );
             }),
