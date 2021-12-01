@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:home_app/features/home/domain/entities/tool.dart';
 import 'package:home_app/features/home/presentation/provider/room_tools.dart';
+import 'package:home_app/features/home/presentation/provider/tab_manager.dart';
 import 'package:home_app/features/home/presentation/widgets/air_conditioner.dart';
 import 'package:home_app/features/home/presentation/widgets/light_bulb.dart';
 import 'package:home_app/features/home/presentation/widgets/smart_tv.dart';
 import 'package:home_app/features/home/presentation/widgets/washing_machine.dart';
+import 'package:provider/provider.dart';
 
 class DetailScreen extends StatefulWidget {
   final int id;
@@ -30,8 +32,17 @@ class DetailScreen extends StatefulWidget {
 
 class _DetailScreenState extends State<DetailScreen>
     with SingleTickerProviderStateMixin {
+  void initState() {
+   
+    super.initState();
+     Provider.of<TabManager>(context, listen: false).setIndexTab(widget.id - 1);
+  }
+  
+
   @override
   Widget build(BuildContext context) {
+    
+    int actualTab = Provider.of<TabManager>(context, listen: false).actualTab;
     return Scaffold(
       backgroundColor: Color(0xFF0D1117),
       body: SingleChildScrollView(
@@ -45,12 +56,7 @@ class _DetailScreenState extends State<DetailScreen>
                 TopBar(
                   title: widget.toolName,
                 ),
-                RoomTools(
-                  id: widget.id,
-                  toolName: widget.toolName,
-                  toolRoomList: widget.toolList,
-                  title: widget.title,
-                ),
+                roomTools(actualTab),
                 SizedBox(height: 30),
                 PropertiesTools(
                   index: widget.id - 1,
@@ -63,6 +69,107 @@ class _DetailScreenState extends State<DetailScreen>
       ),
     );
   }
+  Widget roomTools(int activeTool ) {
+    
+    return Padding(
+      padding: const EdgeInsets.only(top: 40.0),
+      child: Container(
+        height: 100,
+        width: MediaQuery.of(context).size.width,
+        child: ListView.builder(
+          padding: EdgeInsets.only(left: 10),
+          scrollDirection: Axis.horizontal,
+          itemCount: widget.toolList.length,
+          itemBuilder: (BuildContext context, int index) {
+            if (index == activeTool) {
+              return GestureDetector(
+                onTap: () {
+                  setState(() {
+                    //activeTool = index;
+                    Provider.of<TabManager>(context, listen: false).setIndexTab(index);
+                  });
+                },
+                child: Container(
+                  height: 50,
+                  width: 200,
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Center(
+                            child: SizedBox(
+                          child: Icon(
+                            IconData(widget.toolList[index].icon,
+                                fontFamily: 'MaterialIcons'),
+                            color: Color(0xFF58A6FF),
+                            size: 30,
+                          ),
+                          height: 40,
+                          width: 40,
+                        )),
+                        Center(
+                          child: Text(
+                            widget.toolList[index].title,
+                            style: TextStyle(color: Colors.white, fontSize: 23),
+                          ),
+                        ),
+                        Text(
+                          widget.toolList[index].toolName,
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ); // create some card/container for tool view
+            } else {
+              return GestureDetector(
+                onTap: () {
+                  setState(() {
+                    Provider.of<TabManager>(context, listen: false).setIndexTab(index);
+                  });
+                },
+                child: Container(
+                  height: 50,
+                  width: 200,
+                  child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Center(
+                            child: SizedBox(
+                          child: Icon(
+                            IconData(widget.toolList[index].icon,
+                                fontFamily: 'MaterialIcons'),
+                            color: Color(0xFF58A6FF),
+                            size: 30,
+                          ),
+                          height: 40,
+                          width: 40,
+                        )),
+                        Center(
+                          child: Text(
+                            widget.toolList[index].title,
+                            style: TextStyle(color: Colors.grey, fontSize: 20),
+                          ),
+                        ),
+                        Text(
+                          widget.toolList[index].toolName,
+                          style: TextStyle(color: Colors.grey),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            }
+            // create some card/container for tool view
+          },
+        ),
+      ),
+    );
+  }
+
 }
 
 class TopBar extends StatefulWidget {
@@ -118,139 +225,10 @@ class _TopBarState extends State<TopBar> {
       ),
     );
   }
+
+
 }
 
-class RoomTools extends StatefulWidget {
-  /// Widget prepared to view a list of tools.
-  ///
-  /// After assign a tool it should show a properties of this tool.
-
-  final List<Tool> toolRoomList;
-  final int id;
-  final Icon icon;
-  final String title;
-  final String toolName;
-
-  const RoomTools(
-      {Key key,
-      this.toolRoomList,
-      this.id,
-      this.icon,
-      this.title,
-      this.toolName})
-      : super(key: key);
-  @override
-  _RoomToolsState createState() => _RoomToolsState();
-}
-
-class _RoomToolsState extends State<RoomTools> {
-  int activeTool = 0;
-  @override
-  void initState() {
-    activeTool = widget.id - 1;
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 40.0),
-      child: Container(
-        height: 100,
-        width: MediaQuery.of(context).size.width,
-        child: ListView.builder(
-          padding: EdgeInsets.only(left: 10),
-          scrollDirection: Axis.horizontal,
-          itemCount: widget.toolRoomList.length,
-          itemBuilder: (BuildContext context, int index) {
-            if (index == activeTool) {
-              return GestureDetector(
-                onTap: () {
-                  setState(() {
-                    activeTool = index;
-                  });
-                },
-                child: Container(
-                  height: 50,
-                  width: 200,
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Center(
-                            child: SizedBox(
-                          child: Icon(
-                            IconData(widget.toolRoomList[index].icon,
-                                fontFamily: 'MaterialIcons'),
-                            color: Color(0xFF58A6FF),
-                            size: 30,
-                          ),
-                          height: 40,
-                          width: 40,
-                        )),
-                        Center(
-                          child: Text(
-                            widget.toolRoomList[index].title,
-                            style: TextStyle(color: Colors.white, fontSize: 23),
-                          ),
-                        ),
-                        Text(
-                          widget.toolRoomList[index].toolName,
-                          style: TextStyle(color: Colors.white),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ); // create some card/container for tool view
-            } else {
-              return GestureDetector(
-                onTap: () {
-                  setState(() {
-                    activeTool = index;
-                  });
-                },
-                child: Container(
-                  height: 50,
-                  width: 200,
-                  child: Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Center(
-                            child: SizedBox(
-                          child: Icon(
-                            IconData(widget.toolRoomList[index].icon,
-                                fontFamily: 'MaterialIcons'),
-                            color: Color(0xFF58A6FF),
-                            size: 30,
-                          ),
-                          height: 40,
-                          width: 40,
-                        )),
-                        Center(
-                          child: Text(
-                            widget.toolRoomList[index].title,
-                            style: TextStyle(color: Colors.grey, fontSize: 20),
-                          ),
-                        ),
-                        Text(
-                          widget.toolRoomList[index].toolName,
-                          style: TextStyle(color: Colors.grey),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              );
-            }
-            // create some card/container for tool view
-          },
-        ),
-      ),
-    );
-  }
-}
 
 class PropertiesTools extends StatefulWidget {
   final int index;
@@ -274,8 +252,9 @@ class _PropertiesToolsState extends State<PropertiesTools> {
   // ];
   @override
   Widget build(BuildContext context) {
+    int index = Provider.of<TabManager>(context, listen: true).actualTab;
     return Container(
-      child: widget.propertiesList[widget.index],
+      child: widget.propertiesList[index],
     );
   }
 }
