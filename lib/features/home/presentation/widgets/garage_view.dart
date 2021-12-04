@@ -39,6 +39,8 @@ class _GarageViewState extends State<GarageView> {
                                 title: _bathroomToolsList[index].title,
                                 toolName: _bathroomToolsList[index].title,
                                 propertiesList: bathroomPropertiesList,
+                                path: 'garage',
+                                pathTool: 'garageTools',
                               )));
                 },
                 child: ToolCard(

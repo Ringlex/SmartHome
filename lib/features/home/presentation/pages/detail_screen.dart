@@ -15,16 +15,20 @@ class DetailScreen extends StatefulWidget {
   final String title;
   final String toolName;
   final List<Widget> propertiesList;
+  final String path;
+  final String pathTool;
 
-  const DetailScreen(
-      {Key key,
-      this.id,
-      this.toolList,
-      this.icon,
-      this.title,
-      this.toolName,
-      this.propertiesList})
-      : super(key: key);
+  const DetailScreen({
+    Key key,
+    this.id,
+    this.toolList,
+    this.icon,
+    this.title,
+    this.toolName,
+    this.propertiesList,
+    this.path,
+    this.pathTool,
+  }) : super(key: key);
 
   @override
   _DetailScreenState createState() => _DetailScreenState();
@@ -33,15 +37,12 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen>
     with SingleTickerProviderStateMixin {
   void initState() {
-   
     super.initState();
-     Provider.of<TabManager>(context, listen: false).setIndexTab(widget.id - 1);
+    Provider.of<TabManager>(context, listen: false).setIndexTab(widget.id - 1);
   }
-  
 
   @override
   Widget build(BuildContext context) {
-    
     int actualTab = Provider.of<TabManager>(context, listen: false).actualTab;
     return Scaffold(
       backgroundColor: Color(0xFF0D1117),
@@ -69,8 +70,8 @@ class _DetailScreenState extends State<DetailScreen>
       ),
     );
   }
-  Widget roomTools(int activeTool ) {
-    
+
+  Widget roomTools(int activeTool) {
     return Padding(
       padding: const EdgeInsets.only(top: 40.0),
       child: Container(
@@ -86,7 +87,8 @@ class _DetailScreenState extends State<DetailScreen>
                 onTap: () {
                   setState(() {
                     //activeTool = index;
-                    Provider.of<TabManager>(context, listen: false).setIndexTab(index);
+                    Provider.of<TabManager>(context, listen: false)
+                        .setIndexTab(index);
                   });
                 },
                 child: Container(
@@ -126,7 +128,8 @@ class _DetailScreenState extends State<DetailScreen>
               return GestureDetector(
                 onTap: () {
                   setState(() {
-                    Provider.of<TabManager>(context, listen: false).setIndexTab(index);
+                    Provider.of<TabManager>(context, listen: false)
+                        .setIndexTab(index);
                   });
                 },
                 child: Container(
@@ -169,7 +172,6 @@ class _DetailScreenState extends State<DetailScreen>
       ),
     );
   }
-
 }
 
 class TopBar extends StatefulWidget {
@@ -225,17 +227,18 @@ class _TopBarState extends State<TopBar> {
       ),
     );
   }
-
-
 }
-
 
 class PropertiesTools extends StatefulWidget {
   final int index;
   final List<Widget> propertiesList;
+  //final List<Tool> toolList;
 
-  const PropertiesTools({Key key, this.index, this.propertiesList})
-      : super(key: key);
+  const PropertiesTools({
+    Key key,
+    this.index,
+    this.propertiesList,
+  }) : super(key: key);
   @override
   _PropertiesToolsState createState() => _PropertiesToolsState();
 }
@@ -247,6 +250,7 @@ class _PropertiesToolsState extends State<PropertiesTools> {
     LightBulb(),
     WashingMachine(),
   ];
+
   // final List<Widget> kitchenPropertiesList = [
 
   // ];

@@ -39,6 +39,8 @@ class _BathroomViewState extends State<BathroomView> {
                                 title: _bathroomToolList[index].title,
                                 toolName: _bathroomToolList[index].title,
                                 propertiesList: bathroomPropertiesList,
+                                path: 'bathroom',
+                                pathTool: 'bathroomTools',
                               )));
                 },
                 child: ToolCard(

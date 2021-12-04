@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:home_app/features/home/domain/entities/tool.dart';
 
 class AirConditioner extends StatefulWidget {
+  final String path;
+  final String pathTools;
+  final List<Tool> tool;
+  final int toolIndex;
+
+  const AirConditioner(
+      {Key key, this.path, this.pathTools, this.tool, this.toolIndex})
+      : super(key: key);
   @override
   _AirConditionerState createState() => _AirConditionerState();
 }
@@ -10,7 +19,10 @@ class _AirConditionerState extends State<AirConditioner> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Temperature(),
+        Temperature(
+          tool: widget.tool,
+          toolIndex: widget.toolIndex,
+        ),
         Modes(),
       ],
     );
@@ -18,6 +30,14 @@ class _AirConditionerState extends State<AirConditioner> {
 }
 
 class Temperature extends StatefulWidget {
+  final String path;
+  final String pathTools;
+  final List<Tool> tool;
+  final int toolIndex;
+
+  const Temperature(
+      {Key key, this.path, this.pathTools, this.tool, this.toolIndex})
+      : super(key: key);
   @override
   _TemperatureState createState() => _TemperatureState();
 }
@@ -28,18 +48,20 @@ class _TemperatureState extends State<Temperature> {
     return Padding(
       padding: const EdgeInsets.only(left: 20.0, right: 20.0),
       child: Row(children: [
-        buttonControl(Icon(
-          Icons.remove,
-          color: Color(0xFFF9826C),
-          size: 30,
-        )),
+        buttonControl(
+            Icon(
+              Icons.remove,
+              color: Color(0xFFF9826C),
+              size: 30,
+            ),
+            updateValueDown),
         Expanded(
           child: Container(
             child: Center(
               child: Container(
                 child: Center(
                   child: Text(
-                    '25',
+                    widget.tool[widget.toolIndex].tmeperature.toString(),
                     style: TextStyle(
                       color: Color(0xFF0D1117),
                       fontSize: 35,
@@ -63,19 +85,33 @@ class _TemperatureState extends State<Temperature> {
             ),
           ),
         ),
-        buttonControl(Icon(
-          Icons.add,
-          color: Color(0xFFF9826C),
-          size: 30,
-        )),
+        buttonControl(
+            Icon(
+              Icons.add,
+              color: Color(0xFFF9826C),
+              size: 30,
+            ),
+            updateValueUp),
       ]),
     );
   }
+
+  void updateValueUp() {
+    setState(() {
+      widget.tool[widget.toolIndex].tmeperature++;
+    });
+  }
+
+  void updateValueDown() {
+    setState(() {
+      widget.tool[widget.toolIndex].tmeperature--;
+    });
+  }
 }
 
-Widget buttonControl(Icon icon) {
+Widget buttonControl(Icon icon, Function fnc) {
   return GestureDetector(
-    onTap: () {},
+    onTap: fnc,
     child: Container(
       height: 50,
       width: 50,

@@ -42,6 +42,8 @@ class _BedroomViewState extends State<BedroomView> {
                                 title: _bedroomToolsList[index].title,
                                 toolName: _bedroomToolsList[index].title,
                                 propertiesList: bedroomPropertiesList,
+                                path: 'bedroom',
+                                pathTool: 'bedroomTools',
                               )));
                 },
                 child: ToolCard(

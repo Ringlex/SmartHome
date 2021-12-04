@@ -43,6 +43,8 @@ class _KitchenViewState extends State<KitchenView> {
                                 title: _kitchenToolsList[index].title,
                                 toolName: _kitchenToolsList[index].title,
                                 propertiesList: kitchenPropertiesList,
+                                path: 'kitchen',
+                                pathTool: 'kitchenTools',
                               )));
                 },
                 child: ToolCard(

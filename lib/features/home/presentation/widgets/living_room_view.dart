@@ -19,13 +19,19 @@ class _LivingRoomViewState extends State<LivingRoomView> {
   @override
   @override
   Widget build(BuildContext context) {
-    List<Tool> livingRoomList = Provider.of<ToolsManager>(context, listen: false).livingRoomTools;
+    List<Tool> livingRoomList =
+        Provider.of<ToolsManager>(context, listen: false).livingRoomTools;
     final List<Widget> livingPropertiesList = [
-    AirConditioner(),
-    SmartTv(),
-    LightBulb(),
-    WashingMachine(),
-  ];
+      AirConditioner(
+        tool: livingRoomList,
+        toolIndex: 0,
+        path: 'livingRoom',
+        pathTools: 'livingRoomTools',
+      ),
+      SmartTv(),
+      LightBulb(),
+      WashingMachine(),
+    ];
 
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
@@ -46,13 +52,14 @@ class _LivingRoomViewState extends State<LivingRoomView> {
                                 title: livingRoomList[index].title,
                                 toolName: livingRoomList[index].title,
                                 propertiesList: livingPropertiesList,
+                                path: 'livingRoom',
+                                pathTool: 'livingRoomTools',
                               )));
                 },
                 child: ToolCard(
                   title: livingRoomList[index].title,
                   toolName: livingRoomList[index].toolName,
                   icon: livingRoomList[index].icon,
-                  
                 ),
               );
             }),

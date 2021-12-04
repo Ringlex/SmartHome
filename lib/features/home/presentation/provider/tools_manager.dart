@@ -32,4 +32,6 @@ class ToolsManager extends ChangeNotifier {
     print(kitchenTools);
     notifyListeners();
   }
+
+  
 }

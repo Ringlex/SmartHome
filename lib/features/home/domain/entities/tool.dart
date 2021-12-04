@@ -8,7 +8,7 @@ class Tool extends Equatable {
   final int volume;
   final int channel;
   final int brightness;
-  final int tmeperature;
+   int tmeperature;
   final String coffeMode;
   final String coolingMode;
   final String turboMode;
