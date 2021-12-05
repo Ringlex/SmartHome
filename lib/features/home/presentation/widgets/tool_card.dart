@@ -1,5 +1,5 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
-
 
 class ToolCard extends StatefulWidget {
   final String title;
@@ -7,8 +7,13 @@ class ToolCard extends StatefulWidget {
   final Function funcTool;
   final int icon;
 
-  const ToolCard({Key key, this.title, this.toolName, this.funcTool, this.icon})
-      : super(key: key);
+  const ToolCard({
+    Key key,
+    @required this.title,
+    @required this.toolName,
+    this.funcTool,
+    @required this.icon,
+  }) : super(key: key);
   @override
   _ToolCardState createState() => _ToolCardState();
 }
@@ -32,11 +37,10 @@ class _ToolCardState extends State<ToolCard> {
                 height: 15,
               ),
               Icon(
-                            IconData(widget.icon,
-                                fontFamily: 'MaterialIcons'),
-                            color: Color(0xFF58A6FF),
-                            size: 30,
-                          ),
+                IconData(widget.icon, fontFamily: 'MaterialIcons'),
+                color: Color(0xFF58A6FF),
+                size: 30,
+              ),
               SizedBox(
                 height: 10,
               ),
@@ -55,14 +59,17 @@ class _ToolCardState extends State<ToolCard> {
                   //fontWeight: FontWeight.bold,
                 ),
               ),
-              Switch(value: _value, onChanged: (value){
-                setState(() {
-                  _value = value;
-                });
-              },
-              activeColor: Color(0xFF58A6FF),
-              inactiveThumbColor: Colors.grey,
-              inactiveTrackColor: Colors.grey[800],)
+              Switch(
+                value: _value,
+                onChanged: (value) {
+                  setState(() {
+                    _value = value;
+                  });
+                },
+                activeColor: Color(0xFF58A6FF),
+                inactiveThumbColor: Colors.grey,
+                inactiveTrackColor: Colors.grey[800],
+              )
             ],
           )),
     );

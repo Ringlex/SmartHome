@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:home_app/features/home/domain/entities/tool.dart';
 import 'package:home_app/features/home/presentation/provider/room_tools.dart';
@@ -19,15 +20,15 @@ class DetailScreen extends StatefulWidget {
   final String pathTool;
 
   const DetailScreen({
-    Key key,
-    this.id,
-    this.toolList,
-    this.icon,
-    this.title,
-    this.toolName,
-    this.propertiesList,
-    this.path,
-    this.pathTool,
+     Key key,
+    @required this.id,
+    @required this.toolList,
+    @required this.icon,
+    @required this.title,
+    @required this.toolName,
+    @required this.propertiesList,
+    @required this.path,
+    @required this.pathTool, 
   }) : super(key: key);
 
   @override
@@ -236,20 +237,20 @@ class PropertiesTools extends StatefulWidget {
 
   const PropertiesTools({
     Key key,
-    this.index,
-    this.propertiesList,
+    @required this.index,
+    @required this.propertiesList,
   }) : super(key: key);
   @override
   _PropertiesToolsState createState() => _PropertiesToolsState();
 }
 
 class _PropertiesToolsState extends State<PropertiesTools> {
-  final List<Widget> livingPropertiesList = [
-    AirConditioner(),
-    SmartTv(),
-    LightBulb(),
-    WashingMachine(),
-  ];
+  // final List<Widget> livingPropertiesList = [
+  //   AirConditioner(),
+  //   SmartTv(),
+  //   LightBulb(),
+  //   WashingMachine(),
+  // ];
 
   // final List<Widget> kitchenPropertiesList = [
 

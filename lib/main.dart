@@ -1,3 +1,5 @@
+// @dart=2.9
+
 import 'package:flutter/material.dart';
 import 'package:home_app/features/home/presentation/pages/home_screen.dart';
 import 'package:home_app/features/home/presentation/provider/tab_manager.dart';
@@ -7,7 +9,7 @@ import 'injection_container.dart' as di;
 
 void main() async {
   // ignore: await_only_futures
-  await di.init();
+  await  di.init();
 
   runApp(MyApp());
 }
@@ -36,7 +38,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key key, @required this.title}) : super(key: key);
 
   final String title;
 

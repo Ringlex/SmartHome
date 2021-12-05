@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:home_app/features/home/domain/entities/tool.dart';
 import 'package:home_app/features/home/presentation/pages/detail_screen.dart';
@@ -32,6 +33,7 @@ class _GarageViewState extends State<GarageView> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
+                          // ignore: missing_required_param
                           builder: (context) => DetailScreen(
                                 id: index + 1,
                                 toolList: _bathroomToolsList,

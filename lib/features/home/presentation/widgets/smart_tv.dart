@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
 
 class SmartTv extends StatefulWidget {
@@ -84,7 +85,7 @@ Widget functionalButton(
     padding:
         EdgeInsets.only(left: left, top: top, bottom: bottom, right: right),
     child: GestureDetector(
-      onTap: onTap,
+      onTap:() => onTap,
       child: Container(
         child: icon,
         width: width,

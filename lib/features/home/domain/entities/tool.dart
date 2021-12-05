@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:equatable/equatable.dart';
 
 class Tool extends Equatable {
@@ -27,30 +28,30 @@ class Tool extends Equatable {
   final String bakingTemp;
 
   Tool({
-    this.id,
-    this.title,
-    this.toolName,
-    this.icon,
-    this.volume,
-    this.channel,
-    this.brightness,
-    this.tmeperature,
-    this.coffeMode,
-    this.coolingMode,
-    this.turboMode,
-    this.timer,
-    this.washMode,
-    this.workMode,
-    this.playOn,
-    this.washTemerature,
-    this.speedEngine,
-    this.cleaningMode,
-    this.countGrain,
-    this.ml,
-    this.fanOn,
-    this.bakingMode,
-    this.meals,
-    this.bakingTemp,
+      this.id,
+      this.title,
+      this.toolName,
+      this.icon,
+      this.volume,
+     this.channel,
+      this.brightness,
+     this.tmeperature,
+      this.coffeMode,
+      this.coolingMode,
+      this.turboMode,
+      this.timer,
+      this.washMode,
+      this.workMode,
+      this.playOn,
+      this.washTemerature,
+      this.speedEngine,
+      this.cleaningMode,
+     this.countGrain,
+      this.ml,
+      this.fanOn,
+      this.bakingMode,
+      this.meals,
+      this.bakingTemp,
   });
 
 

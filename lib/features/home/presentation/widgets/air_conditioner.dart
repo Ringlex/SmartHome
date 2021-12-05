@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:home_app/features/home/domain/entities/tool.dart';
 
@@ -7,9 +8,13 @@ class AirConditioner extends StatefulWidget {
   final List<Tool> tool;
   final int toolIndex;
 
-  const AirConditioner(
-      {Key key, this.path, this.pathTools, this.tool, this.toolIndex})
-      : super(key: key);
+  const AirConditioner({
+    Key key,
+    this.path,
+    this.pathTools,
+    @required this.tool,
+    @required this.toolIndex,
+  }) : super(key: key);
   @override
   _AirConditionerState createState() => _AirConditionerState();
 }
@@ -35,9 +40,13 @@ class Temperature extends StatefulWidget {
   final List<Tool> tool;
   final int toolIndex;
 
-  const Temperature(
-      {Key key, this.path, this.pathTools, this.tool, this.toolIndex})
-      : super(key: key);
+  const Temperature({
+    Key key,
+    this.path,
+    this.pathTools,
+    @required this.tool,
+    @required this.toolIndex,
+  }) : super(key: key);
   @override
   _TemperatureState createState() => _TemperatureState();
 }
@@ -111,7 +120,7 @@ class _TemperatureState extends State<Temperature> {
 
 Widget buttonControl(Icon icon, Function fnc) {
   return GestureDetector(
-    onTap: fnc,
+    onTap:  fnc,
     child: Container(
       height: 50,
       width: 50,

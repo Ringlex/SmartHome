@@ -1,3 +1,4 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
 
 class Oven extends StatefulWidget {
@@ -72,7 +73,7 @@ class _OvenState extends State<Oven> {
 /// and function. Applies to only [Oven].
 Widget functionButton(Icon icon, Function func) {
   return GestureDetector(
-    onTap: func,
+    onTap: () =>  func,
     child: Container(
       child: Center(
         child: icon,
