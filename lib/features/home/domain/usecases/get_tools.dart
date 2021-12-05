@@ -10,7 +10,7 @@ class GetTools {
     return toolRepositories.getTool(path, pathTool);
   }
 
-  Future<void> callUpdate(String path, String value, String key,
+  Future<void> callUpdate(String path, var value, String key,
       String pathTool, String variable) async {
     return await toolRepositories.updateValue(
         path, value, key, pathTool, variable);

@@ -1,6 +1,8 @@
 // @dart=2.9
 import 'package:flutter/material.dart';
 import 'package:home_app/features/home/domain/entities/tool.dart';
+import 'package:home_app/features/home/presentation/provider/tools_manager.dart';
+import 'package:provider/provider.dart';
 
 class AirConditioner extends StatefulWidget {
   final String path;
@@ -54,6 +56,7 @@ class Temperature extends StatefulWidget {
 class _TemperatureState extends State<Temperature> {
   @override
   Widget build(BuildContext context) {
+    //final updateData = Provider.of<ToolsManager>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.only(left: 20.0, right: 20.0),
       child: Row(children: [
@@ -108,12 +111,16 @@ class _TemperatureState extends State<Temperature> {
   void updateValueUp() {
     setState(() {
       widget.tool[widget.toolIndex].tmeperature++;
+      
+      Provider.of<ToolsManager>(context,listen: false).updataData('livingRoom', widget.tool[widget.toolIndex].tmeperature, '0', 'livingRoomTools', 'temperature');
     });
   }
 
   void updateValueDown() {
     setState(() {
-      widget.tool[widget.toolIndex].tmeperature--;
+       widget.tool[widget.toolIndex].tmeperature--;
+      
+      Provider.of<ToolsManager>(context,listen: false).updataData('livingRoom', widget.tool[widget.toolIndex].tmeperature, '0', 'livingRoomTools', 'temperature');
     });
   }
 }

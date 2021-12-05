@@ -7,7 +7,7 @@ abstract class ToolsRemoteDataSource {
   Future<List<ToolsModel>> getConcreteTool(String path, String pathTool);
 
   Future<void> updateTool(
-      String path, String value, String key, String pathTool, String variable);
+      String path, var value, String key, String pathTool, String variable);
 }
 
 class ToolsRemoteDataSourceImpl implements ToolsRemoteDataSource {
@@ -27,7 +27,7 @@ class ToolsRemoteDataSourceImpl implements ToolsRemoteDataSource {
   }
 
   @override
-  Future<void> updateTool(String path, String value, String key,
+  Future<void> updateTool(String path, var value, String key,
       String pathTool, String variable) async {
     final url =
         'https://home-346ef-default-rtdb.firebaseio.com/rooms/$path/$pathTool/$key.json';

@@ -16,7 +16,7 @@ class ToolsRepositoryImpl implements ToolRepositories {
     }
   
     @override
-    Future<void> updateValue(String path, String value, String key, String pathTool, String variable) async{
+    Future<void> updateValue(String path, var value, String key, String pathTool, String variable) async{
       return toolsRemoteDataSource.updateTool(path, value, key, pathTool, variable);
     
   }
