@@ -28,8 +28,16 @@ class _LivingRoomViewState extends State<LivingRoomView> {
         path: 'livingRoom',
         pathTools: 'livingRoomTools',
       ),
-      SmartTv(),
-      LightBulb(),
+      SmartTv(
+        tool: livingRoomList,
+        toolIndex: 1,
+        path: 'livingRoom',
+        pathTools: 'livingRoomTools',
+      ),
+      LightBulb(tool: livingRoomList,
+        toolIndex: 2,
+        path: 'livingRoom',
+        pathTools: 'livingRoomTools',),
       WashingMachine(),
     ];
 

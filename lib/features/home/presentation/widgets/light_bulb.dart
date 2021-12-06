@@ -1,14 +1,31 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
+import 'package:home_app/features/home/domain/entities/tool.dart';
+import 'package:home_app/features/home/presentation/provider/tools_manager.dart';
+import 'package:provider/provider.dart';
 
 class LightBulb extends StatefulWidget {
+  final String path;
+  final String pathTools;
+  final List<Tool> tool;
+  final int toolIndex;
+
+  const LightBulb({
+    Key key,
+    this.path,
+    this.pathTools,
+    @required this.tool,
+    @required this.toolIndex,
+  }) : super(key: key);
   @override
   _LightBulbState createState() => _LightBulbState();
 }
 
 class _LightBulbState extends State<LightBulb> {
-  double valueBright = 20;
+  
   @override
   Widget build(BuildContext context) {
+    double valueBright = widget.tool[widget.toolIndex].brightness.toDouble();
     return LayoutBuilder(
       builder: (context, constraints) {
         return Column(
@@ -30,6 +47,13 @@ class _LightBulbState extends State<LightBulb> {
                 onChanged: (double value) {
                   setState(() {
                     valueBright = value.roundToDouble();
+                    widget.tool[widget.toolIndex].brightness = valueBright.toInt();
+                    Provider.of<ToolsManager>(context, listen: false).updataData(
+                  widget.path,
+                  widget.tool[widget.toolIndex].brightness,
+                  widget.toolIndex.toString(),
+                  widget.pathTools,
+                  'brightness');
                   });
                 },
                 min: 0,

@@ -13,13 +13,17 @@ class BathroomView extends StatefulWidget {
 }
 
 class _BathroomViewState extends State<BathroomView> {
-  final List<Widget> bathroomPropertiesList = [
-    LightBulb(),
-  ];
+  
   @override
   Widget build(BuildContext context) {
     List<Tool> _bathroomToolList =
         Provider.of<ToolsManager>(context, listen: false).bathroomTools;
+        final List<Widget> bathroomPropertiesList = [
+    LightBulb(tool: _bathroomToolList,
+        toolIndex: 0,
+        path: 'bathroom',
+        pathTools: 'bathroomTools',),
+  ];
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         return Padding(

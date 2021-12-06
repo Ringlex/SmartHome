@@ -14,20 +14,24 @@ class GarageView extends StatefulWidget {
 }
 
 class _GarageViewState extends State<GarageView> {
-  final List<Widget> bathroomPropertiesList = [
-    LightBulb(),
-  ];
+ 
   @override
   Widget build(BuildContext context) {
-    List<Tool> _bathroomToolsList =
-        Provider.of<ToolsManager>(context, listen: false).bathroomTools;
+    List<Tool> _garageToolsList =
+        Provider.of<ToolsManager>(context, listen: false).garageTools;
+         final List<Widget> bathroomPropertiesList = [
+    LightBulb(tool: _garageToolsList,
+        toolIndex: 0,
+        path: 'garage',
+        pathTools: 'garageTools',),
+  ];
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         return Padding(
           padding: const EdgeInsets.only(top: 20.0),
           child: GridView.count(
             crossAxisCount: 2,
-            children: List.generate(_bathroomToolsList.length, (index) {
+            children: List.generate(_garageToolsList.length, (index) {
               return GestureDetector(
                 onTap: () {
                   Navigator.push(
@@ -36,19 +40,19 @@ class _GarageViewState extends State<GarageView> {
                           // ignore: missing_required_param
                           builder: (context) => DetailScreen(
                                 id: index + 1,
-                                toolList: _bathroomToolsList,
-                                icon: _bathroomToolsList[index].icon,
-                                title: _bathroomToolsList[index].title,
-                                toolName: _bathroomToolsList[index].title,
+                                toolList: _garageToolsList,
+                                icon: _garageToolsList[index].icon,
+                                title: _garageToolsList[index].title,
+                                toolName: _garageToolsList[index].title,
                                 propertiesList: bathroomPropertiesList,
                                 path: 'garage',
                                 pathTool: 'garageTools',
                               )));
                 },
                 child: ToolCard(
-                  title: _bathroomToolsList[index].title,
-                  toolName: _bathroomToolsList[index].toolName,
-                  icon: _bathroomToolsList[index].icon,
+                  title: _garageToolsList[index].title,
+                  toolName: _garageToolsList[index].toolName,
+                  icon: _garageToolsList[index].icon,
                 ),
               );
             }),

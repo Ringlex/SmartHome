@@ -15,15 +15,25 @@ class BedroomView extends StatefulWidget {
 }
 
 class _BedroomViewState extends State<BedroomView> {
-  final List<Widget> bedroomPropertiesList = [
-    LightBulb(),
-    LightBulb(),
-    SmartTv(),
-  ];
+  
   @override
   Widget build(BuildContext context) {
     List<Tool> _bedroomToolsList =
         Provider.of<ToolsManager>(context, listen: false).bedroomTools;
+        final List<Widget> bedroomPropertiesList = [
+    LightBulb(tool: _bedroomToolsList,
+        toolIndex: 0,
+        path: 'bedroom',
+        pathTools: 'bedroomTools',),
+    LightBulb(tool: _bedroomToolsList,
+        toolIndex: 1,
+        path: 'bedroom',
+        pathTools: 'bedroomTools',),
+    SmartTv( tool: _bedroomToolsList,
+        toolIndex: 2,
+        path: 'bedroom',
+        pathTools: 'bedroomTools'),
+  ];
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         return Padding(

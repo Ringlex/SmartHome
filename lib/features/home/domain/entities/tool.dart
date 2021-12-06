@@ -6,14 +6,14 @@ class Tool extends Equatable {
   final String title;
   final String toolName;
   final int icon;
-  final int volume;
-  final int channel;
-  final int brightness;
+   int volume;
+   int channel;
+   int brightness;
    int tmeperature;
   final String coffeMode;
   final String coolingMode;
   final String turboMode;
-  final int timer;
+   int timer;
   final String washMode;
   final String workMode;
   final int playOn;
@@ -21,7 +21,7 @@ class Tool extends Equatable {
   final int speedEngine;
   final String cleaningMode;
   final int countGrain;
-  final int ml;
+   int ml;
   final int fanOn;
   final String bakingMode;
   final String meals;
