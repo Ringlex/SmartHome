@@ -1,6 +1,7 @@
 // @dart=2.9
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:home_app/features/home/domain/entities/tool.dart';
 import 'package:home_app/features/home/presentation/pages/add_tool_screen.dart';
 import 'package:home_app/features/home/presentation/provider/tools_manager.dart';
 import 'package:home_app/features/home/presentation/widgets/bathroom_view.dart';
@@ -18,14 +19,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen>
     with SingleTickerProviderStateMixin {
   TabController _tabController;
+  int temperature = 0;
   @override
   void initState() {
-     Provider.of<ToolsManager>(context, listen: false).fetchToolsToLists();
     super.initState();
-    //Future.delayed(const Duration(milliseconds: 100), () {
 
-    // });
-
+ 
     _tabController = TabController(
       length: 5,
       vsync: this,
@@ -40,9 +39,10 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
-  
-   final lista = context.select((ToolsManager n) => n.livingRoomTools);
-   print(lista);
+    final lista = context.select((ToolsManager n) => n.livingRoomTools);
+    print(lista);
+    //temperature = lista[0].tmeperature;
+
     return Scaffold(
       backgroundColor: Color(0xFF0D1117),
       appBar: AppBar(
@@ -149,35 +149,53 @@ class _HomeScreenState extends State<HomeScreen>
 
 ///Widget display main information for home.
 ///It's a temperature.
-class InfoBar extends StatelessWidget {
+class InfoBar extends StatefulWidget {
   final height;
   final width;
+  int temperature = 0;
 
-  const InfoBar({Key key, this.height, this.width}) : super(key: key);
+  InfoBar({Key key, this.height, this.width, this.temperature})
+      : super(key: key);
+
+  @override
+  State<InfoBar> createState() => _InfoBarState();
+}
+
+class _InfoBarState extends State<InfoBar> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: height,
-      //width: 20,
-      child: Padding(
-        padding: const EdgeInsets.only(
-          left: 2.0,
-          top: 15,
-        ),
-        child: Row(
-          children: [
-            Icon(
-              Icons.ac_unit,
-              color: Colors.white,
-              size: 26,
-            ),
-            SizedBox(width: 10),
-            Text('25°C',
-                style: TextStyle(color: Color(0xFF58A6FF), fontSize: 26)),
-          ],
-        ),
-      ),
-    );
+    return Consumer<ToolsManager>(
+        builder: (context, providerData, _) => FutureBuilder(
+            future: providerData.getTemp(),
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
+              if (snapshot.hasData) {
+                return Container(
+                  height: widget.height,
+                  //width: 20,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      left: 2.0,
+                      top: 15,
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.ac_unit,
+                          color: Colors.white,
+                          size: 26,
+                        ),
+                        SizedBox(width: 10),
+                        Text('${snapshot.data}°C',
+                            style: TextStyle(
+                                color: Color(0xFF58A6FF), fontSize: 26)),
+                      ],
+                    ),
+                  ),
+                );
+              } else {
+                return CircularProgressIndicator();
+              }
+            }));
   }
 }
 

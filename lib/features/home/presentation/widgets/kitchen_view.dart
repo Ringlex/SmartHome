@@ -16,15 +16,20 @@ class KitchenView extends StatefulWidget {
 }
 
 class _KitchenViewState extends State<KitchenView> {
-  final List<Widget> kitchenPropertiesList = [
-    CoffeExpress(),
-    Oven(),
-    LightBulb(),
-  ];
   @override
   Widget build(BuildContext context) {
     List<Tool> _kitchenToolsList =
         Provider.of<ToolsManager>(context, listen: false).kitchenTools;
+    final List<Widget> kitchenPropertiesList = [
+      CoffeExpress(),
+      Oven(),
+      LightBulb(
+        tool: _kitchenToolsList,
+        toolIndex: 2,
+        path: 'kitchen',
+        pathTools: 'kitchenTools',
+      )
+    ];
     return LayoutBuilder(
       builder: (BuildContext context, BoxConstraints constraints) {
         return Padding(

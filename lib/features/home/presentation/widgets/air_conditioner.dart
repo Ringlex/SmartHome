@@ -24,15 +24,20 @@ class AirConditioner extends StatefulWidget {
 class _AirConditionerState extends State<AirConditioner> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Temperature(
-          tool: widget.tool,
-          toolIndex: widget.toolIndex,
-        ),
-        Modes(),
-      ],
-    );
+    return LayoutBuilder(builder: (context, constraints) {
+      return Column(
+        children: [
+          Temperature(
+            tool: widget.tool,
+            toolIndex: widget.toolIndex,
+          ),
+          Modes(
+            maxWidth: constraints.maxWidth,
+            maxHeight: constraints.maxHeight,
+          ),
+        ],
+      );
+    });
   }
 }
 
@@ -111,23 +116,33 @@ class _TemperatureState extends State<Temperature> {
   void updateValueUp() {
     setState(() {
       widget.tool[widget.toolIndex].tmeperature++;
-      
-      Provider.of<ToolsManager>(context,listen: false).updataData('livingRoom', widget.tool[widget.toolIndex].tmeperature, '0', 'livingRoomTools', 'temperature');
+
+      Provider.of<ToolsManager>(context, listen: false).updataData(
+          'livingRoom',
+          widget.tool[widget.toolIndex].tmeperature,
+          '0',
+          'livingRoomTools',
+          'temperature');
     });
   }
 
   void updateValueDown() {
     setState(() {
-       widget.tool[widget.toolIndex].tmeperature--;
-      
-      Provider.of<ToolsManager>(context,listen: false).updataData('livingRoom', widget.tool[widget.toolIndex].tmeperature, '0', 'livingRoomTools', 'temperature');
+      widget.tool[widget.toolIndex].tmeperature--;
+
+      Provider.of<ToolsManager>(context, listen: false).updataData(
+          'livingRoom',
+          widget.tool[widget.toolIndex].tmeperature,
+          '0',
+          'livingRoomTools',
+          'temperature');
     });
   }
 }
 
 Widget buttonControl(Icon icon, Function fnc) {
   return GestureDetector(
-    onTap:  fnc,
+    onTap: fnc,
     child: Container(
       height: 50,
       width: 50,
@@ -141,6 +156,10 @@ Widget buttonControl(Icon icon, Function fnc) {
 }
 
 class Modes extends StatefulWidget {
+  final double maxWidth;
+  final double maxHeight;
+
+  const Modes({Key key, this.maxWidth, this.maxHeight}) : super(key: key);
   @override
   _ModesState createState() => _ModesState();
 }
@@ -165,6 +184,8 @@ class _ModesState extends State<Modes> {
             ),
             () {},
             'Cooling mode',
+            widget.maxWidth,
+            widget.maxHeight,
           ),
           SizedBox(
             width: 32,
@@ -177,6 +198,8 @@ class _ModesState extends State<Modes> {
             ),
             () {},
             'Turbo mode',
+            widget.maxWidth,
+            widget.maxHeight,
           ),
           SizedBox(
             width: 32,
@@ -189,6 +212,8 @@ class _ModesState extends State<Modes> {
             ),
             () {},
             'Set timer',
+            widget.maxWidth,
+            widget.maxHeight,
           ),
         ],
       ),
@@ -196,12 +221,14 @@ class _ModesState extends State<Modes> {
   }
 }
 
-Widget mode(Icon icon, Function function, String title) {
+Widget mode(Icon icon, Function function, String title, double maxWidth,
+    double maxHeight) {
   return GestureDetector(
     onTap: function,
     child: Container(
-      height: 120,
-      width: 100,
+      //TODO: Adjust sieze for other phones
+      height: 115,
+      width: 95,
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

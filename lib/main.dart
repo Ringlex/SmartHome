@@ -48,6 +48,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   void initState() {
+    Provider.of<ToolsManager>(context, listen: false).fetchToolsToLists();
       super.initState();
        
       
