@@ -37,6 +37,7 @@ class ToolsManager extends ChangeNotifier {
   Future<void> updataData(String path, var value, String key, String pathTool,
       String variable) async {
     _getTools.callUpdate(path, value, key, pathTool, variable);
+    notifyListeners();
   }
 
   Future<void> getTemp() async {

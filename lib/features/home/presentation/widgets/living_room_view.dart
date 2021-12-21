@@ -20,7 +20,7 @@ class _LivingRoomViewState extends State<LivingRoomView> {
   @override
   Widget build(BuildContext context) {
     List<Tool> livingRoomList =
-        Provider.of<ToolsManager>(context, listen: false).livingRoomTools;
+        Provider.of<ToolsManager>(context, listen: true).livingRoomTools;
     final List<Widget> livingPropertiesList = [
       AirConditioner(
         tool: livingRoomList,
