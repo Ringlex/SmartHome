@@ -11,7 +11,7 @@ class ToolsModel extends Tool {
       final int channel,
       final int brightness,
       final int tmeperature,
-      final String coffeMode,
+       String coffeMode,
       final String coolingMode,
       final String turboMode,
        int timer,

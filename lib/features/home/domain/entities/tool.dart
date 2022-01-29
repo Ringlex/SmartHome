@@ -10,7 +10,7 @@ class Tool extends Equatable {
   int channel;
   int brightness;
   int tmeperature;
-  final String coffeMode;
+  String coffeMode;
   final String coolingMode;
   final String turboMode;
   int timer;
@@ -20,9 +20,9 @@ class Tool extends Equatable {
   final int washTemerature;
   final int speedEngine;
   final String cleaningMode;
-  final int countGrain;
+  int countGrain;
   int ml;
-   int fanOn;
+  int fanOn;
   String bakingMode;
   final String meals;
   int bakingTemp;

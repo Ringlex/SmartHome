@@ -21,7 +21,12 @@ class _KitchenViewState extends State<KitchenView> {
     List<Tool> _kitchenToolsList =
         Provider.of<ToolsManager>(context, listen: false).kitchenTools;
     final List<Widget> kitchenPropertiesList = [
-      CoffeExpress(),
+      CoffeExpress(
+        tool: _kitchenToolsList,
+        toolIndex: 0,
+        path: 'kitchen',
+        pathTools: 'kitchenTools',
+      ),
       Oven(tool: _kitchenToolsList,
         toolIndex: 1,
         path: 'kitchen',

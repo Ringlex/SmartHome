@@ -112,7 +112,6 @@ class _OvenState extends State<Oven> {
                     size: 50, color: Color(0xFF58A6FF)),
               ),
             ),
-            //TODO add functionality for baking mode
             SizedBox(
               width: 20,
             ),

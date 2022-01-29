@@ -61,17 +61,21 @@ class _PopUpButtonState extends State<PopUpButton> {
                 .map(
                   (item) => GestureDetector(
                     onTap: () {
-                      if(variable == 'bakingMode'){
-                          widget.tool[toolIndex].bakingMode = item.title;
-                        }
-                        else if(variable == 'bakingTemp'){
-                          widget.tool[toolIndex].bakingTemp = item.title;
-                        }
+                      if (variable == 'bakingMode') {
+                        widget.tool[toolIndex].bakingMode = item.title;
+                        kindOfMode = item.title;
+                      } else if (variable == 'bakingTemp') {
+                        widget.tool[toolIndex].bakingTemp = item.title;
+                        kindOfMode = item.title;
+                      } else if (variable == 'coffeMode') {
+                        widget.tool[toolIndex].coffeMode = item.title;
+                        kindOfMode = item.title;
+                      }
                       setState(() {
                         Provider.of<ToolsManager>(context, listen: false)
                             .updataData(
                           widget.path,
-                          widget.tool[toolIndex].bakingMode,
+                          kindOfMode,
                           widget.toolIndex.toString(),
                           widget.pathTools,
                           widget.variable,

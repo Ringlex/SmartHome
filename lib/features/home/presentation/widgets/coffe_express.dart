@@ -1,13 +1,59 @@
+// @dart=2.9
 import 'package:flutter/material.dart';
+import 'package:home_app/features/home/domain/entities/tool.dart';
+import 'package:home_app/features/home/presentation/widgets/oven.dart';
+import 'package:home_app/features/home/presentation/widgets/pop_up_button.dart';
 
 class CoffeExpress extends StatefulWidget {
+  final String path;
+  final String pathTools;
+  final List<Tool> tool;
+  final int toolIndex;
+
+  const CoffeExpress({
+    Key key,
+    this.path,
+    this.pathTools,
+    this.tool,
+    this.toolIndex,
+  }) : super(key: key);
+
   @override
   _CoffeExpressState createState() => _CoffeExpressState();
 }
 
 class _CoffeExpressState extends State<CoffeExpress> {
+  
+  List<ItemMode> milliliters = [
+    ItemMode(
+      title: '100',
+    ),
+    ItemMode(
+      title: '150',
+    ),
+    ItemMode(
+      title: '200',
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
+    List<ItemMode> coffeeList = [
+    ItemMode(
+      title: 'Dark Coffe',
+    ),
+    ItemMode(
+      title: 'Latte',
+    ),
+    ItemMode(
+      title: 'Capuccino',
+    ),
+    ItemMode(
+      title: 'Espresso',
+    ),
+    ItemMode(
+      title: 'Coffe&Milk',
+    ),
+  ];
     return Center(
       child: Container(
         constraints: BoxConstraints(maxHeight: 400, maxWidth: 400),
@@ -18,7 +64,17 @@ class _CoffeExpressState extends State<CoffeExpress> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  typeCoffee(),
+                  PopUpButton(
+                    path: widget.path,
+                    kindOfMode: widget.tool[widget.toolIndex].coffeMode,
+                    heatPosition: coffeeList,
+                    variable: 'coffeMode',
+                    pathTools: widget.pathTools,
+                    toolIndex: widget.toolIndex,
+                    tool: widget.tool,
+                    child: typeCoffee(),
+                    //TODO type of coffe doesn't changed in grid
+                  ),
                   SizedBox(
                     width: 30,
                   ),
@@ -110,7 +166,7 @@ Widget typeCleaning() {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text('Cleaning\n mode',
-          textAlign: TextAlign.center,
+              textAlign: TextAlign.center,
               style: TextStyle(fontSize: 20, color: Colors.white)),
         ],
       ),
